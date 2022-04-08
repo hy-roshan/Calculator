@@ -49,11 +49,11 @@
 
 .wrapper .display {
   width: 100%;
-  background-color: #8a837a;
+  background-color: #d4a86d;
   height: 60px;
 }
 
-.wrapper .display input {
+.wrapper .display .input {
   text-align: right;
   height: 100%;
   display: block;

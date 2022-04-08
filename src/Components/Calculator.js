@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./Calculator.css";
 
 export default function Calculator() {
-  const [def, setDefault] = useState(0); //default state
+  const [def, setDef] = useState(0);
   const [previous, setPrevious] = useState("");
   const [current, setCurrent] = useState("");
   const [operation, setOperation] = useState("");
@@ -10,14 +10,19 @@ export default function Calculator() {
   const [theme, setTheme] = useState(""); //light/dark theme
 
   const appendValue = (el) => {
-    setDefault(def + 1);
     const value = el.target.getAttribute("data");
+    setDef(value);
 
+    if (current === "0" && value === "0") return;
+    else if (current.startsWith("0")) {
+      setCurrent(value);
+      return;
+    }
     setCurrent(current + value);
   };
 
   const handleAllClear = () => {
-    setDefault(0);
+    setDef(0);
     setCurrent("");
     setPrevious("");
     setOperation("");
@@ -38,7 +43,7 @@ export default function Calculator() {
 
   const equals = () => {
     let value = compute();
-    if (value === undefined || value === null) return;
+    if (value == undefined || value == null) return;
 
     setCurrent(value);
     setPrevious("");
@@ -54,6 +59,11 @@ export default function Calculator() {
 
     switch (operation) {
       case "Div(/)":
+        if (previousNumber === 0 || currentNumber === 0) {
+          alert("cant divide with 0");
+          handleAllClear();
+          break;
+        }
         result = previousNumber / currentNumber;
         break;
       case "Mul(*)":
@@ -73,20 +83,34 @@ export default function Calculator() {
   };
   const scientificHandler = (el) => {
     const val = el.target.getAttribute("data");
-    val === "Square root"
-      ? setCurrent(Math.sqrt(current))
-      : val === "Square"
-      ? setCurrent(current * current)
-      : setCurrent(current * -1);
+
+    switch (val) {
+      case "Square root":
+        if (current < 0) {
+          alert("Please provide a positive integer");
+          handleAllClear();
+          break;
+        }
+        setCurrent(Math.sqrt(val));
+        break;
+      case "Square":
+        setCurrent(current * current);
+        break;
+      case "Sign":
+        setCurrent(current * -1);
+        break;
+      default:
+        return;
+    }
   };
 
   return (
     <div className="container">
       <div className="wrapper">
         <div className="display">
-          <input
-            value={def === 0 ? def : current === "" ? previous : current}
-          />
+          <div className="input">
+            {def === 0 ? def : current === "" ? previous : current}
+          </div>
         </div>
         <div className={`keypad ${theme}`}>
           <button className="btn" data={"1"} onClick={appendValue}>
@@ -128,7 +152,7 @@ export default function Calculator() {
           <button className="btn" onClick={handleAllClear}>
             Clear
           </button>
-          <button className="btn" data={"0"} onClick={appendValue}>
+          <button id="zero" className="btn" data={"0"} onClick={appendValue}>
             0
           </button>
           <button className="btn" onClick={equals}>
@@ -174,15 +198,6 @@ export default function Calculator() {
             }}
           >
             Dark
-          </button>
-          <button
-            className="btn"
-            onClick={() => {
-              setTheme("");
-              document.body.style.backgroundColor = "white";
-            }}
-          >
-            Default
           </button>
         </div>
       </div>
