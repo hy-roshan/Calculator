@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import "./Calculator.css";
 
 export default function Calculator() {
-  const [def, setDefault] = useState(0);
+  const [def, setDefault] = useState(0); //default state
   const [previous, setPrevious] = useState("");
   const [current, setCurrent] = useState("");
   const [operation, setOperation] = useState("");
-  const [toggle, setToggle] = useState(false);
-  const [theme, setTheme] = useState("");
+  const [toggle, setToggle] = useState(false); //button toggle for scientific
+  const [theme, setTheme] = useState(""); //light/dark theme
+
   const appendValue = (el) => {
     setDefault(def + 1);
     const value = el.target.getAttribute("data");
@@ -46,7 +47,7 @@ export default function Calculator() {
 
   const compute = () => {
     let result;
-    let previousNumber = parseFloat(previous);
+    let previousNumber = parseFloat(previous); //converts string to float for performing operations
     let currentNumber = parseFloat(current);
 
     if (isNaN(previousNumber) || isNaN(currentNumber)) return;
@@ -70,7 +71,7 @@ export default function Calculator() {
 
     return result;
   };
-  const scihandler = (el) => {
+  const scientificHandler = (el) => {
     const val = el.target.getAttribute("data");
     val === "Square root"
       ? setCurrent(Math.sqrt(current))
@@ -141,13 +142,17 @@ export default function Calculator() {
           </button>
           {toggle ? (
             <>
-              <button className="btn" data="Square root" onClick={scihandler}>
+              <button
+                className="btn"
+                data="Square root"
+                onClick={scientificHandler}
+              >
                 Square root
               </button>
-              <button className="btn" data="Square" onClick={scihandler}>
+              <button className="btn" data="Square" onClick={scientificHandler}>
                 Square
               </button>
-              <button className="btn" data="Sign" onClick={scihandler}>
+              <button className="btn" data="Sign" onClick={scientificHandler}>
                 Sign
               </button>
             </>
