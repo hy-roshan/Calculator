@@ -2,21 +2,21 @@ import React, { useState } from "react";
 import "./Calculator.css";
 
 export default function Calculator() {
-  const [d, sd] = useState(0);
+  const [def, setDefault] = useState(0);
   const [previous, setPrevious] = useState("");
   const [current, setCurrent] = useState("");
   const [operation, setOperation] = useState("");
   const [toggle, setToggle] = useState(false);
   const [theme, setTheme] = useState("");
   const appendValue = (el) => {
-    sd(d + 1);
+    setDefault(def + 1);
     const value = el.target.getAttribute("data");
 
     setCurrent(current + value);
   };
 
   const handleAllClear = () => {
-    sd(0);
+    setDefault(0);
     setCurrent("");
     setPrevious("");
     setOperation("");
@@ -83,7 +83,9 @@ export default function Calculator() {
     <div className="container">
       <div className="wrapper">
         <div className="display">
-          <input value={d === 0 ? d : current === "" ? previous : current} />
+          <input
+            value={def === 0 ? def : current === "" ? previous : current}
+          />
         </div>
         <div className={`keypad ${theme}`}>
           <button className="btn" data={"1"} onClick={appendValue}>
