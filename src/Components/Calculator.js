@@ -79,16 +79,6 @@ export default function Calculator() {
       : setCurrent(current * -1);
   };
 
-  document.addEventListener("keyup", (e) => {
-    console.log("keypress");
-    onkeyup(e);
-  });
-  const onkeyup = (e) => {
-    let keyName = e.key;
-    console.log(keyName);
-    setCurrent(keyName);
-  };
-
   return (
     <div className="container">
       <div className="wrapper">
@@ -155,8 +145,8 @@ export default function Calculator() {
               <button className="btn" data="Square" onClick={scihandler}>
                 Square
               </button>
-              <button className="btn" data="Invert" onClick={scihandler}>
-                Invert
+              <button className="btn" data="Sign" onClick={scihandler}>
+                Sign
               </button>
             </>
           ) : null}
