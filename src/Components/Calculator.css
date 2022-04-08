@@ -1,0 +1,91 @@
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 960px;
+  height: 100%;
+}
+.keypad {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.keypad .btn {
+  width: 24.4%;
+  text-align: center;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #d6d6d6;
+  font-size: 25px;
+  margin: 1px;
+  cursor: pointer;
+  transition: 0.2s ease-in all;
+}
+.keypad .btn:hover {
+  background: #9a9a9a;
+}
+.display {
+  width: 100%;
+  background-color: #8a837a;
+  height: 60px;
+}
+.wrapper {
+  max-width: 400px;
+  height: 350px;
+  background: rgba(75, 75, 75, 0.65);
+  -moz-box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
+  -webkit-box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
+  box-shadow: 0 0 20px 0 rgba(50, 50, 50, 0.75);
+}
+
+.wrapper .display {
+  width: 100%;
+  background-color: #8a837a;
+  height: 60px;
+}
+
+.wrapper .display input {
+  text-align: right;
+  height: 100%;
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font-size: 35px;
+}
+
+:root {
+  --black-bg-color: #000;
+  --white-bg-color: #fff;
+  --grey-button-color: #f0f0f0;
+  --black-button-color: #666;
+  --black-text-color: #000;
+  --white-text-color: #fff;
+}
+
+.keypad.light {
+  background: var(--white-bg-color);
+}
+.keypad.dark {
+  background: var(--black-bg-color);
+}
+
+.keypad.light .btn {
+  color: var(--black-text-color);
+  background: var(--grey-button-color);
+}
+
+.keypad.dark .btn {
+  color: var(--white-text-color);
+  background: var(--black-button-color);
+}
