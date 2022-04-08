@@ -168,7 +168,13 @@ export default function Calculator() {
           >
             Dark
           </button>
-          <button className="btn" onClick={() => setTheme("")}>
+          <button
+            className="btn"
+            onClick={() => {
+              setTheme("");
+              document.body.style.backgroundColor = "white";
+            }}
+          >
             Default
           </button>
         </div>
