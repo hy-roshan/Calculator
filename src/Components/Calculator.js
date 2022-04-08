@@ -86,7 +86,7 @@ export default function Calculator() {
 
     switch (val) {
       case "Square root":
-        if (Number(current) < 0) {
+        if (current < 0) {
           alert("Please provide a positive integer");
           handleAllClear();
           break;
