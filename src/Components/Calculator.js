@@ -86,12 +86,12 @@ export default function Calculator() {
 
     switch (val) {
       case "Square root":
-        if (current < 0) {
+        if (Number(current) < 0) {
           alert("Please provide a positive integer");
           handleAllClear();
           break;
         }
-        setCurrent(Math.sqrt(val));
+        setCurrent(Math.sqrt(current));
         break;
       case "Square":
         setCurrent(current * current);
