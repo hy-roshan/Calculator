@@ -14,7 +14,7 @@ export default function Calculator() {
     setDef(value);
 
     if (current === "0" && value === "0") return;
-    else if (current.startsWith("0")) {
+    else if (current.toString().startsWith("0")) {
       setCurrent(value);
       return;
     }
